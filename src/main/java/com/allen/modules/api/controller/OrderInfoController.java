@@ -28,8 +28,14 @@ public class OrderInfoController {
 	
 	@RequestMapping(value="/api/order/create",method=RequestMethod.POST)
 	@ResponseBody
-	public Result<Object> createOrder(@RequestBody CreateOrder request){
-		return new Result<>(this.orderInfoService.createOrder(request.getSid()));
+	public Result<Object> createOrder(@RequestBody(required=true) CreateOrder request){
+		return new Result<>(this.orderInfoService.createOrder(request));
 	} 
+
+	@RequestMapping(value="/api/order/getOrderToken")
+    @ResponseBody
+	public Result<String> getOrderToken(){
+	    return new Result<String>(this.orderInfoService.getOrderToken());
+	}
 
 }
